@@ -1,157 +1,141 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ক্লাস শিডিউল</title>
+
+  <!-- Google Font (Bengali) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
   <style>
-    body {
-      background-color: #000; /* কালো ব্যাকগ্রাউন্ড */
-      font-family: "Noto Sans Bengali", Arial, sans-serif;
-      color: #fff;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .header-box {
-      display: inline-block;
-      background: #d63384; /* বেগুনি */
-      color: #fff;
-      font-size: 22px;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 6px;
-      margin: 20px auto;
-    }
-
-    .table-container {
-      width: 100%;
-      overflow-x: auto; /* মোবাইলে স্ক্রল করবে */
-      margin-bottom: 25px;
-    }
-
-    table {
-      width: 95%;
-      margin: 0 auto;
-      border-collapse: collapse;
-      font-size: 18px;
-      background: #002000; /* গাঢ় সবুজ ব্যাকগ্রাউন্ড */
-      min-width: 400px; /* মোবাইলেও টেবিল ভেঙে না যায় */
-    }
-
-    thead th {
-      background: #000;
-      color: #ffcc00; /* হলুদ লেখা */
-      padding: 10px;
-      border: 1px solid #00aa00;
-      white-space: nowrap;
-    }
-
-    tbody td {
-      border: 1px solid #00aa00; /* সবুজ বর্ডার */
-      padding: 10px;
-    }
-
-    tbody tr:nth-child(even) {
-      background: #003000; /* আলাদা সবুজ শেড */
-    }
-
-    /* SL column style */
-    tbody td:first-child {
-      color: #00ff80; /* হালকা সবুজ */
-      font-weight: bold;
-      text-align: center;
-    }
-
-    /* বিষয় column */
-    tbody td:nth-child(2) {
-      text-align: left;
-      color: #fff;
-      font-weight: 500;
-    }
-
-    /* সময় column */
-    tbody td:last-child {
-      color: #fff;
-      font-weight: 600;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    /* রেস্পনসিভ: ছোট স্ক্রিনে ফন্ট ছোট */
-    @media (max-width: 600px) {
-      .header-box {
-        font-size: 18px;
-        padding: 8px 15px;
-      }
-      table {
-        font-size: 16px;
-      }
-      thead th, tbody td {
-        padding: 8px;
-      }
-    }
+    body { font-family: "Noto Sans Bengali", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .bg-deep { background:#000; }                 /* কালো ব্যাকগ্রাউন্ড */
+    .pill { background:#d63384; }                 /* বেগুনি হেডার পিল */
+    .tbl-wrap { background:#002000; }             /* টেবিলের গাঢ় সবুজ ব্যাকগ্রাউন্ড */
+    .tbl thead th { color:#ffcc00; }              /* হলুদ হেডিং */
+    .tbl th, .tbl td { border-color:#00aa00 !important; } /* সবুজ বর্ডার */
+    .tbl tbody tr:nth-child(even) { background:#003000; } /* বিকল্প সারির সবুজ শেড */
+    .sl { color:#00ff80; font-weight:700; }       /* SL কলামের রং */
+    .time { white-space:nowrap; font-weight:700; }
+    .section-gap { margin-top: 1.2rem; margin-bottom: 2rem; }
   </style>
 </head>
-<body>
+<body class="bg-deep text-white">
 
-  <!-- ১ম দিন -->
-  <div class="header-box">১ম দিন (লাইভ ক্লাস)</div>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>SL</th>
-          <th>বিষয়</th>
-          <th>ক্লাস শুরুর টাইম</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>১</td>
-          <td>English Grammar</td>
-          <td>সকাল ৭.০০ মি</td>
-        </tr>
-        <tr>
-          <td>২</td>
-          <td>বাংলা ১ম পত্র</td>
-          <td>সকাল ৮.৩০ মি</td>
-        </tr>
-        <tr>
-          <td>৩</td>
-          <td>সাধারণ জ্ঞান (বাংলাদেশ + আন্তর্জাতিক ও সাম্প্রতিক)</td>
-          <td>বিকাল ৫.৩০ মি</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container py-4">
+
+    <!-- ১ম দিন -->
+    <div class="text-center section-gap">
+      <span class="pill text-white fw-bold px-3 py-2 rounded-3 d-inline-block">১ম দিন (লাইভ ক্লাস)</span>
+    </div>
+    <div class="table-responsive rounded-3 overflow-hidden tbl-wrap mb-4">
+      <table class="table table-dark table-bordered tbl m-0 align-middle">
+        <thead class="bg-black">
+          <tr>
+            <th scope="col" class="text-center">SL</th>
+            <th scope="col">বিষয়</th>
+            <th scope="col" class="text-center">ক্লাস শুরুর টাইম</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center sl">১</td>
+            <td class="fw-semibold text-start">English Grammar</td>
+            <td class="text-center time">সকাল ৭.০০ মি</td>
+          </tr>
+          <tr>
+            <td class="text-center sl">২</td>
+            <td class="fw-semibold text-start">বাংলা ১ম পত্র</td>
+            <td class="text-center time">সকাল ৮.৩০ মি</td>
+          </tr>
+          <tr>
+            <td class="text-center sl">৩</td>
+            <td class="fw-semibold text-start">সাধারণ জ্ঞান (বাংলাদেশ + আন্তর্জাতিক ও সাম্প্রতিক)</td>
+            <td class="text-center time">বিকাল ৫.৩০ মি</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ২য় দিন -->
+    <div class="text-center section-gap">
+      <span class="pill text-white fw-bold px-3 py-2 rounded-3 d-inline-block">২য় দিন (লাইভ ক্লাস)</span>
+    </div>
+    <div class="table-responsive rounded-3 overflow-hidden tbl-wrap mb-5">
+      <table class="table table-dark table-bordered tbl m-0 align-middle">
+        <thead class="bg-black">
+          <tr>
+            <th scope="col" class="text-center">SL</th>
+            <th scope="col">বিষয়</th>
+            <th scope="col" class="text-center">ক্লাস শুরুর টাইম</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center sl">১</td>
+            <td class="fw-semibold text-start">ব্যাকরণ</td>
+            <td class="text-center time">সকাল ৭.০০ মি</td>
+          </tr>
+          <tr>
+            <td class="text-center sl">২</td>
+            <td class="fw-semibold text-start">English 1st Paper – HSC</td>
+            <td class="text-center time">বিকাল ৫.৩০ মি</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- দৈনিক রুটিন (সকাল ৭ – রাত ৯) -->
+    <div class="text-center section-gap">
+      <span class="pill text-white fw-bold px-3 py-2 rounded-3 d-inline-block">দৈনিক রুটিন (সকাল ৭টা – রাত ৯টা)</span>
+    </div>
+    <div class="table-responsive rounded-3 overflow-hidden tbl-wrap">
+      <table class="table table-dark table-bordered tbl m-0 align-middle">
+        <thead class="bg-black">
+          <tr>
+            <th class="text-center">পর্ব</th>
+            <th>সময়</th>
+            <th>কাজ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center sl">সকাল</td>
+            <td class="time">৭:০০ – ১০:০০</td>
+            <td class="text-start">English Grammar / Eng 1st Paper → বাংলা</td>
+          </tr>
+          <tr>
+            <td class="text-center sl">দুপুর</td>
+            <td class="time">১:০০ – ২:০০</td>
+            <td class="text-start">রিভিশন + নোট</td>
+          </tr>
+          <tr>
+            <td class="text-center sl">বিকেল</td>
+            <td class="time">৪:০০ – ৭:০০</td>
+            <td class="text-start">GK (BD + Intl + সাম্প্রতিক) → Math/ICT</td>
+          </tr>
+          <tr>
+            <td class="text-center sl">রাত</td>
+            <td class="time">৭:৩০ – ১০:৩০</td>
+            <td class="text-start">মডেল টেস্ট/MCQ → দিনের রিভিশন</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-secondary-50 small mt-3 mb-0 text-center">
+      নোট: খাবার/নামাজ/বিরতির ৪ ঘণ্টা—৭–১০ এর পর, ১২–১, ২–৪, ৭–৭:৩০—ইচ্ছেমতো অ্যাডজাস্ট করো।
+    </p>
+
   </div>
 
-  <!-- ২য় দিন -->
-  <div class="header-box">২য় দিন (লাইভ ক্লাস)</div>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>SL</th>
-          <th>বিষয়</th>
-          <th>ক্লাস শুরুর টাইম</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>১</td>
-          <td>ব্যাকরণ</td>
-          <td>সকাল ৭.০০ মি</td>
-        </tr>
-        <tr>
-          <td>২</td>
-          <td>English 1st Paper – HSC</td>
-          <td>বিকাল ৫.৩০ মি</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
