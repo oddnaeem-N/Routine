@@ -1,55 +1,157 @@
-<div class="container">
-    <div class="header-box">
-        ১ম দিন (লাইভ ক্লাস)
-    </div>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ক্লাস শিডিউল</title>
+  <style>
+    body {
+      background-color: #000; /* কালো ব্যাকগ্রাউন্ড */
+      font-family: "Noto Sans Bengali", Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-box {
+      display: inline-block;
+      background: #d63384; /* বেগুনি */
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 20px auto;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto; /* মোবাইলে স্ক্রল করবে */
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 95%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      font-size: 18px;
+      background: #002000; /* গাঢ় সবুজ ব্যাকগ্রাউন্ড */
+      min-width: 400px; /* মোবাইলেও টেবিল ভেঙে না যায় */
+    }
+
+    thead th {
+      background: #000;
+      color: #ffcc00; /* হলুদ লেখা */
+      padding: 10px;
+      border: 1px solid #00aa00;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      border: 1px solid #00aa00; /* সবুজ বর্ডার */
+      padding: 10px;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #003000; /* আলাদা সবুজ শেড */
+    }
+
+    /* SL column style */
+    tbody td:first-child {
+      color: #00ff80; /* হালকা সবুজ */
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* বিষয় column */
+    tbody td:nth-child(2) {
+      text-align: left;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* সময় column */
+    tbody td:last-child {
+      color: #fff;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* রেস্পনসিভ: ছোট স্ক্রিনে ফন্ট ছোট */
+    @media (max-width: 600px) {
+      .header-box {
+        font-size: 18px;
+        padding: 8px 15px;
+      }
+      table {
+        font-size: 16px;
+      }
+      thead th, tbody td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ১ম দিন -->
+  <div class="header-box">১ম দিন (লাইভ ক্লাস)</div>
+  <div class="table-container">
     <table>
-        <thead>
-            <tr>
-                <th>ক্রম</th>
-                <th>বিষয়</th>
-                <th>ক্লাস শুরু</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>১</td>
-                <td>English Grammar</td>
-                <td>সকাল ৭.০০ মি</td>
-            </tr>
-            <tr>
-                <td>২</td>
-                <td>বাংলা ১ম পত্র</td>
-                <td>সকাল ৮.৩০ মি</td>
-            </tr>
-            <tr>
-                <td>৩</td>
-                <td>সাধারণ জ্ঞান (বাংলাদেশ + আন্তর্জাতিক ও সাম্প্রতিক)</td>
-                <td>বিকাল ৫.৩০ মি</td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>SL</th>
+          <th>বিষয়</th>
+          <th>ক্লাস শুরুর টাইম</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>১</td>
+          <td>English Grammar</td>
+          <td>সকাল ৭.০০ মি</td>
+        </tr>
+        <tr>
+          <td>২</td>
+          <td>বাংলা ১ম পত্র</td>
+          <td>সকাল ৮.৩০ মি</td>
+        </tr>
+        <tr>
+          <td>৩</td>
+          <td>সাধারণ জ্ঞান (বাংলাদেশ + আন্তর্জাতিক ও সাম্প্রতিক)</td>
+          <td>বিকাল ৫.৩০ মি</td>
+        </tr>
+      </tbody>
     </table>
-</div>
-<div class="schedule-container">
-    <div class="header">২য় দিন (লাইভ ক্লাস)</div>
+  </div>
+
+  <!-- ২য় দিন -->
+  <div class="header-box">২য় দিন (লাইভ ক্লাস)</div>
+  <div class="table-container">
     <table>
-        <thead>
-            <tr>
-                <th>SL</th>
-                <th>বিষয়</th>
-                <th>ক্লাস শুরুর টাইম</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>১</td>
-                <td>ব্যকরণ</td>
-                <td>সকাল ৭.০০ মি</td>
-            </tr>
-            <tr>
-                <td>২</td>
-                <td>English 1st Paper-HSC</td>
-                <td>বিকাল ৫.৩০ মি.</td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>SL</th>
+          <th>বিষয়</th>
+          <th>ক্লাস শুরুর টাইম</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>১</td>
+          <td>ব্যাকরণ</td>
+          <td>সকাল ৭.০০ মি</td>
+        </tr>
+        <tr>
+          <td>২</td>
+          <td>English 1st Paper – HSC</td>
+          <td>বিকাল ৫.৩০ মি</td>
+        </tr>
+      </tbody>
     </table>
-</div>
+  </div>
+
+</body>
+</html>
