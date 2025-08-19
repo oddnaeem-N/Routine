@@ -35,7 +35,7 @@
     "rule": "অতীতে শুরু হয়েছে এবং এখনো চলমান। had + had = অতীতে নির্ধারিত সময়ের মধ্যে হওয়া।\nhave + had = অতীতে শুরু হয়েছে কিন্তু তা বর্তমানে চলমান।"
   },
   {
-    "sentence": "We are good friends. We have known each other.l for a long time.",
+    "sentence": "We are good friends. We have known each other for a long time.",
     "answer": "have known",
     "rule": "have/be/know/see এর present continous হয় না।"
   },
