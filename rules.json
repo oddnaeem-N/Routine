@@ -1,1 +1,27 @@
-
+[
+  {
+    "sentence": "Teacher said, \"The earth — round the sun.\"",
+    "answer": "moves",
+    "explanation": "এটি একটি চিরন্তন সত্য বাক্য (Universal Truth)। চিরন্তন সত্য বাক্যগুলো সবসময় Simple Present Tense-এ হয়। তাই, 'move' ক্রিয়ার সঠিক রূপ 'moves' হবে।"
+  },
+  {
+    "sentence": "The man seldom (smoke).",
+    "answer": "smokes",
+    "explanation": "'Seldom' একটি adverb of frequency, যা সাধারণত Simple Present Tense-এ ব্যবহৃত হয়। 'The man' তৃতীয় পুরুষ একবচন হওয়ায় 'smoke' ক্রিয়ার সাথে 's' যোগ হবে।"
+  },
+  {
+    "sentence": "Rabindranath's stories often — surprise endings.",
+    "answer": "have",
+    "explanation": "'Often' একটি adverb of frequency, যা Simple Present Tense নির্দেশ করে। 'Rabindranath's stories' বহুবচন হওয়ায় 'have' বসবে।"
+  },
+  {
+    "sentence": "We often — a victim of circumstances.",
+    "answer": "fall",
+    "explanation": "'Often' adverb of frequency হওয়ায় Simple Present Tense ব্যবহৃত হবে। 'We' বহুবচন হওয়ায় 'fall' ক্রিয়ার মূল রূপ বসবে।"
+  },
+  {
+    "sentence": "He — up at 7 O'clock every morning.",
+    "answer": "gets",
+    "explanation": "'Every morning' দ্বারা প্রতিদিনের অভ্যাস বোঝানো হচ্ছে, যা Simple Present Tense-এর বৈশিষ্ট্য। 'He' তৃতীয় পুরুষ একবচন হওয়ায় 'get' ক্রিয়ার সাথে 's' যোগ হবে।"
+  }
+]
