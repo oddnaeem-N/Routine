@@ -1,120 +1,77 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>30 Days English Plan</title>
+<title>Right Form of Verbs App</title>
 <style>
-body { font-family: "Noto Sans Bengali", Arial, sans-serif; background:#000; color:#fff; padding:20px; }
-h2 { margin-top:2rem; }
-
-.tbl-wrap { background:#002000; border-radius:0.5rem; overflow-x:auto; margin-bottom:2rem; }
-table { width:100%; border-collapse: collapse; min-width:400px; }
-thead th { color:#ffcc00; background:#000; padding:10px; border:1px solid #00aa00; }
-td { border:1px solid #00aa00; padding:10px; vertical-align:middle; text-align:center; }
-tbody tr:nth-child(even) { background:#003000; }
-.past-day { background:Red !important; }   /* হালকা লাল */
-.today-day { background:Green !important; }  /* হালকা সবুজ */
-.text-start { text-align:left; padding-left:15px; }
-
-@media (max-width:600px) {
-  td, th { font-size:14px; padding:6px; }
-}
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f4f9;
+  }
+  h1 {
+    text-align: center;
+  }
+  .rule-list {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0;
+    list-style: none;
+  }
+  .rule-item {
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .rule-item:hover {
+    background: #e0f7fa;
+  }
+  .details {
+    margin-top: 10px;
+    padding-left: 10px;
+    display: none;
+  }
+  .example {
+    color: #00796b;
+    font-style: italic;
+  }
 </style>
 </head>
 <body>
 
-<h2>Grammar Plan</h2>
-<div class="tbl-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Date</th>
-        <th>Grammar Topic</th>
-      </tr>
-    </thead>
-    <tbody id="grammarTable"></tbody>
-  </table>
-</div>
+<h1>Right Form of Verbs</h1>
 
-<h2>Vocabulary Plan</h2>
-<div class="tbl-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Date</th>
-        <th>Vocabulary Topic</th>
-      </tr>
-    </thead>
-    <tbody id="vocabTable"></tbody>
-  </table>
-</div>
+<ul class="rule-list" id="ruleList">
+  <!-- Rules will be injected here -->
+</ul>
 
 <script>
-// Start date manually
-const startDate = new Date(2025, 7, 19); // 19 Aug 2025 (Month 0-11)
-startDate.setHours(0,0,0,0);
-
-const grammarTopics = [
-  "Right form of verbs",
-  "Subject-Verb Agreement",
-  "Identification of parts of speech",
-  "Interchange of parts of speech",
-  "Confusing verb & modal verbs",
-  "Noun & Number",
-  "Article",
-  "Tag Question",
-  "Narration & Voice",
-  "Phrase & clause",
-  "Sentence Correction"
-];
-
-const vocabTopics = [
-  "Synonym & Meaning",
-  "Antonym",
-  "Spelling",
-  "Preposition",
-  "Idiom",
-  "One word substitution"
-];
-
-function fillTable(tableId, topics) {
-  const tableBody = document.getElementById(tableId);
-  for (let i=0; i<30; i++) {
-    const row = document.createElement("tr");
-
-    // Day
-    const dayCell = document.createElement("td");
-    dayCell.innerText = i+1;
-    row.appendChild(dayCell);
-
-    // Date
-    const dateCell = document.createElement("td");
-    const date = new Date(startDate);
-    date.setDate(startDate.getDate() + i);
-    dateCell.innerText = date.toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric"});
-    row.appendChild(dateCell);
-
-    // Topic
-    const topicCell = document.createElement("td");
-    topicCell.innerText = topics[i % topics.length];
-    topicCell.className = "text-start";
-    row.appendChild(topicCell);
-
-    // Highlight past/today
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    if (date < today) row.classList.add("past-day");
-    else if (date.getTime() === today.getTime()) row.classList.add("today-day");
-
-    tableBody.appendChild(row);
-  }
-}
-
-fillTable("grammarTable", grammarTopics);
-fillTable("vocabTable", vocabTopics);
+// Load JSON data
+fetch('rules.json')
+  .then(response => response.json())
+  .then(rules => {
+    const ruleList = document.getElementById('ruleList');
+    rules.forEach((rule, index) => {
+      const li = document.createElement('li');
+      li.classList.add('rule-item');
+      li.innerHTML = `<strong>${rule.title}</strong>
+                      <div class="details" id="details-${index}">
+                        <div class="example">Example: ${rule.example}</div>
+                        <div class="explanation">Explanation: ${rule.explanation}</div>
+                      </div>`;
+      li.addEventListener('click', () => {
+        const details = document.getElementById(`details-${index}`);
+        details.style.display = details.style.display === 'none' ? 'block' : 'none';
+      });
+      ruleList.appendChild(li);
+    });
+  })
+  .catch(error => console.error('Error loading JSON:', error));
 </script>
 
 </body>
