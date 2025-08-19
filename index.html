@@ -23,7 +23,7 @@
     text-align: center;
   }
   .sentence {
-    font-size: 36px;
+    font-size: 24px;
     margin-bottom: 15px;
   }
   .answer-highlight {
@@ -31,26 +31,35 @@
     font-weight: bold;
   }
   .rule {
-    margin-top: 20px;
+    margin-top: 10px;
     color: #00796b;
     font-style: italic;
     display: none;
   }
   button {
     margin: 5px;
-    padding: 8px 16px;
+    padding: 6px 12px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
   }
   .btn-show {
     background: #1976d2;
     color: #fff;
   }
-  .btn-next {
-    background: #388e3c;
+  .pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .pagination button {
+    background: #eee;
+    margin: 0 3px;
+  }
+  .pagination .active {
+    background: #1976d2;
     color: #fff;
+    font-weight: bold;
   }
 </style>
 </head>
@@ -58,66 +67,109 @@
 
 <h1>Right Form of Verbs</h1>
 
-<div class="card">
-  <div class="sentence" id="sentence"></div>
-  <button class="btn-show" id="showBtn">Show Answer</button>
-  <button class="btn-next" id="nextBtn">Next</button>
-  <div class="rule" id="ruleBox"></div>
-</div>
+<div id="cardsContainer"></div>
+<div class="pagination" id="pagination"></div>
 
 <script>
 let rules = [];
-let currentIndex = 0;
-let answered = false;
+let currentPage = 1;
+const rulesPerPage = 10;
 
 fetch('rules.json')
   .then(response => response.json())
   .then(data => {
     rules = data;
-    showQuestion();
+    renderPage();
+    renderPagination();
   })
   .catch(error => console.error('Error loading JSON:', error));
 
-function showQuestion() {
-  answered = false;
-  const sentenceEl = document.getElementById('sentence');
-  const ruleBox = document.getElementById('ruleBox');
-  ruleBox.style.display = 'none';
+function renderPage() {
+  const container = document.getElementById('cardsContainer');
+  container.innerHTML = '';
 
-  const current = rules[currentIndex];
-  // গ্যাপ ফিলিং করার জন্য answer কে "____" দিয়ে replace
-  const questionText = current.sentence.replace(current.answer, "_____");
-  sentenceEl.innerHTML = "Q: " + questionText;
+  const start = (currentPage - 1) * rulesPerPage;
+  const end = start + rulesPerPage;
+  const pageItems = rules.slice(start, end);
+
+  pageItems.forEach((item) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const sentenceEl = document.createElement('div');
+    sentenceEl.className = 'sentence';
+    sentenceEl.innerHTML = "Q: " + item.sentence.replace(item.answer, "_____");
+
+    const showBtn = document.createElement('button');
+    showBtn.className = 'btn-show';
+    showBtn.textContent = "Show Answer";
+
+    const ruleBox = document.createElement('div');
+    ruleBox.className = 'rule';
+
+    showBtn.addEventListener('click', () => {
+      sentenceEl.innerHTML = "Q: " + item.sentence.replace(
+        item.answer,
+        `<span class="answer-highlight">${item.answer}</span>`
+      );
+      ruleBox.innerHTML = "Rule: " + item.rule;
+      ruleBox.style.display = 'block';
+    });
+
+    card.appendChild(sentenceEl);
+    card.appendChild(showBtn);
+    card.appendChild(ruleBox);
+    container.appendChild(card);
+  });
 }
 
-document.getElementById('showBtn').addEventListener('click', () => {
-  if (answered) return;
-  const current = rules[currentIndex];
-  const sentenceEl = document.getElementById('sentence');
-  const ruleBox = document.getElementById('ruleBox');
+function renderPagination() {
+  const pagination = document.getElementById('pagination');
+  pagination.innerHTML = '';
 
-  // answer বসানো (সবুজ + bold)
-  const answeredText = current.sentence.replace(
-    current.answer,
-    `<span class="answer-highlight">${current.answer}</span>`
-  );
-  sentenceEl.innerHTML = "Q: " + answeredText;
+  const totalPages = Math.ceil(rules.length / rulesPerPage);
 
-  // rule দেখানো
-  ruleBox.innerHTML = "Rule: " + current.rule;
-  ruleBox.style.display = 'block';
+  // Prev button
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = "Prev";
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage();
+      renderPagination();
+    }
+  });
+  pagination.appendChild(prevBtn);
 
-  answered = true;
-});
+  // Number buttons
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    if (i === currentPage) btn.classList.add('active');
 
-document.getElementById('nextBtn').addEventListener('click', () => {
-  if (currentIndex < rules.length - 1) {
-    currentIndex++;
-    showQuestion();
-  } else {
-    alert("🎉 সব প্রশ্ন শেষ!");
+    btn.addEventListener('click', () => {
+      currentPage = i;
+      renderPage();
+      renderPagination();
+    });
+
+    pagination.appendChild(btn);
   }
-});
+
+  // Next button
+  const nextBtn = document.createElement('button');
+  nextBtn.textContent = "Next";
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPage();
+      renderPagination();
+    }
+  });
+  pagination.appendChild(nextBtn);
+}
 </script>
 
 </body>
