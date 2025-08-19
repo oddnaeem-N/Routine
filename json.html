@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rules JSON Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f4f9;
+  }
+  h1 {
+    text-align: center;
+  }
+  .form-box {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  button {
+    margin-top: 15px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .btn-add {
+    background: #1976d2;
+    color: #fff;
+  }
+  .btn-generate {
+    background: #388e3c;
+    color: #fff;
+  }
+  .output {
+    margin-top: 20px;
+    white-space: pre-wrap;
+    background: #272822;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: monospace;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+</style>
+</head>
+<body>
+
+<h1>Rules JSON Generator</h1>
+
+<div class="form-box">
+  <label>Sentence (with answer inside)</label>
+  <input type="text" id="sentence" placeholder='Example: Teacher said, "The earth moves round the sun."'>
+
+  <label>Answer</label>
+  <input type="text" id="answer" placeholder="Example: moves">
+
+  <label>Rule</label>
+  <textarea id="rule" rows="3" placeholder="Write the grammar rule here..."></textarea>
+
+  <button class="btn-add" onclick="addRule()">Add Rule</button>
+  <button class="btn-generate" onclick="generateJSON()">Generate JSON</button>
+</div>
+
+<div class="output" id="output"></div>
+
+<script>
+let rules = [];
+
+function addRule() {
+  const sentence = document.getElementById('sentence').value.trim();
+  const answer = document.getElementById('answer').value.trim();
+  const rule = document.getElementById('rule').value.trim();
+
+  if (!sentence || !answer || !rule) {
+    alert("সব ফিল্ড পূরণ করো!");
+    return;
+  }
+
+  rules.push({ sentence, answer, rule });
+
+  // ফর্ম clear করে দাও
+  document.getElementById('sentence').value = "";
+  document.getElementById('answer').value = "";
+  document.getElementById('rule').value = "";
+
+  alert("Rule added!");
+}
+
+function generateJSON() {
+  const output = document.getElementById('output');
+  if (rules.length === 0) {
+    output.innerText = "❌ No rules added yet!";
+    return;
+  }
+  output.innerText = JSON.stringify(rules, null, 2);
+}
+</script>
+
+</body>
+</html>
