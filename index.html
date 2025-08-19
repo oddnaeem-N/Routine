@@ -23,11 +23,15 @@
     text-align: center;
   }
   .sentence {
-    font-size: 18px;
+    font-size: 36px;
     margin-bottom: 15px;
   }
+  .answer-highlight {
+    color: green;
+    font-weight: bold;
+  }
   .rule {
-    margin-top: 15px;
+    margin-top: 20px;
     color: #00796b;
     font-style: italic;
     display: none;
@@ -38,7 +42,7 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
   }
   .btn-show {
     background: #1976d2;
@@ -92,8 +96,11 @@ document.getElementById('showBtn').addEventListener('click', () => {
   const sentenceEl = document.getElementById('sentence');
   const ruleBox = document.getElementById('ruleBox');
 
-  // answer বসিয়ে দেয়া
-  const answeredText = current.sentence;
+  // answer বসানো (সবুজ + bold)
+  const answeredText = current.sentence.replace(
+    current.answer,
+    `<span class="answer-highlight">${current.answer}</span>`
+  );
   sentenceEl.innerHTML = "Q: " + answeredText;
 
   // rule দেখানো
