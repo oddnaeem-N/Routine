@@ -95,7 +95,7 @@
     "rule": "last night"
   },
   {
-    "sentence": "I had to your glasses because my eyes were not very good.",
+    "sentence": "I had to wear your glasses because my eyes were not very good.",
     "answer": "had to",
     "rule": "কারণ were আছে তাই have to না হয়ে had to হয়েছে"
   },
