@@ -13,32 +13,40 @@
   h1 {
     text-align: center;
   }
-  .rule-list {
+  .card {
     max-width: 600px;
     margin: 20px auto;
-    padding: 0;
-    list-style: none;
-  }
-  .rule-item {
     background: #fff;
-    margin: 10px 0;
-    padding: 15px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    text-align: center;
   }
-  .rule-item:hover {
-    background: #e0f7fa;
+  .sentence {
+    font-size: 18px;
+    margin-bottom: 15px;
   }
-  .details {
-    margin-top: 10px;
-    padding-left: 10px;
-    display: none;
-  }
-  .example {
+  .rule {
+    margin-top: 15px;
     color: #00796b;
     font-style: italic;
+    display: none;
+  }
+  button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .btn-show {
+    background: #1976d2;
+    color: #fff;
+  }
+  .btn-next {
+    background: #388e3c;
+    color: #fff;
   }
 </style>
 </head>
@@ -46,32 +54,63 @@
 
 <h1>Right Form of Verbs</h1>
 
-<ul class="rule-list" id="ruleList">
-  <!-- Rules will be injected here -->
-</ul>
+<div class="card">
+  <div class="sentence" id="sentence"></div>
+  <button class="btn-show" id="showBtn">Show Answer</button>
+  <button class="btn-next" id="nextBtn">Next</button>
+  <div class="rule" id="ruleBox"></div>
+</div>
 
 <script>
-// Load JSON data
+let rules = [];
+let currentIndex = 0;
+let answered = false;
+
 fetch('rules.json')
   .then(response => response.json())
-  .then(rules => {
-    const ruleList = document.getElementById('ruleList');
-    rules.forEach((rule, index) => {
-      const li = document.createElement('li');
-      li.classList.add('rule-item');
-      li.innerHTML = `<strong>${rule.title}</strong>
-                      <div class="details" id="details-${index}">
-                        <div class="example">Example: ${rule.example}</div>
-                        <div class="explanation">Explanation: ${rule.explanation}</div>
-                      </div>`;
-      li.addEventListener('click', () => {
-        const details = document.getElementById(`details-${index}`);
-        details.style.display = details.style.display === 'none' ? 'block' : 'none';
-      });
-      ruleList.appendChild(li);
-    });
+  .then(data => {
+    rules = data;
+    showQuestion();
   })
   .catch(error => console.error('Error loading JSON:', error));
+
+function showQuestion() {
+  answered = false;
+  const sentenceEl = document.getElementById('sentence');
+  const ruleBox = document.getElementById('ruleBox');
+  ruleBox.style.display = 'none';
+
+  const current = rules[currentIndex];
+  // গ্যাপ ফিলিং করার জন্য answer কে "____" দিয়ে replace
+  const questionText = current.sentence.replace(current.answer, "_____");
+  sentenceEl.innerHTML = "Q: " + questionText;
+}
+
+document.getElementById('showBtn').addEventListener('click', () => {
+  if (answered) return;
+  const current = rules[currentIndex];
+  const sentenceEl = document.getElementById('sentence');
+  const ruleBox = document.getElementById('ruleBox');
+
+  // answer বসিয়ে দেয়া
+  const answeredText = current.sentence;
+  sentenceEl.innerHTML = "Q: " + answeredText;
+
+  // rule দেখানো
+  ruleBox.innerHTML = "Rule: " + current.rule;
+  ruleBox.style.display = 'block';
+
+  answered = true;
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  if (currentIndex < rules.length - 1) {
+    currentIndex++;
+    showQuestion();
+  } else {
+    alert("🎉 সব প্রশ্ন শেষ!");
+  }
+});
 </script>
 
 </body>
