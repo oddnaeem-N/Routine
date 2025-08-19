@@ -18,5 +18,110 @@
     "sentence": "We often fall a victim of circumstances.",
     "answer": "fall",
     "rule": "fall a victim একটা বাক্যাংশ যা পরিস্থির শিকার অর্থে ব্যবহৃত হয়েছে।"
+  },
+  {
+    "sentence": "He has gone out just now.",
+    "answer": "gone",
+    "rule": "যেহেতু এটা Present perfect তাই V3 হবে।"
+  },
+  {
+    "sentence": "I have not yet drunk the glass of milk.",
+    "answer": "drunk",
+    "rule": "Have/has + V3"
+  },
+  {
+    "sentence": "We have not had a holiday since the beginning of the year.",
+    "answer": "have not had",
+    "rule": "অতীতে শুরু হয়েছে এবং এখনো চলমান। had + had = অতীতে নির্ধারিত সময়ের মধ্যে হওয়া।\nhave + had = অতীতে শুরু হয়েছে কিন্তু তা বর্তমানে চলমান।"
+  },
+  {
+    "sentence": "We are good friends. We have known each other.l for a long time.",
+    "answer": "have known",
+    "rule": "have/be/know/see এর present continous হয় না।"
+  },
+  {
+    "sentence": "She has been unconscious since four O'clock.",
+    "answer": "has been",
+    "rule": "since আছে তাই এটা has + been হবে।"
+  },
+  {
+    "sentence": "Naeem has been bored for about a week.",
+    "answer": "has been",
+    "rule": "has + been কারণ অতীতে শুরু এখনো চলছে"
+  },
+  {
+    "sentence": "She wore lovely dress last night.",
+    "answer": "wore",
+    "rule": "S + V2 + …"
+  },
+  {
+    "sentence": "If I knew you before!",
+    "answer": "knew",
+    "rule": "before, Past Ind. নির্দেশক"
+  },
+  {
+    "sentence": "My friend saw the president yesterday.",
+    "answer": "saw",
+    "rule": "yesterday"
+  },
+  {
+    "sentence": "I saw him long since.",
+    "answer": "saw",
+    "rule": "long since"
+  },
+  {
+    "sentence": "He gave a lecture yesterday.",
+    "answer": "gave",
+    "rule": "yesterday"
+  },
+  {
+    "sentence": "Taspia left home last night.",
+    "answer": "left",
+    "rule": "last night"
+  },
+  {
+    "sentence": "He left home yesterday.",
+    "answer": "left",
+    "rule": "yesterday"
+  },
+  {
+    "sentence": "The times began its life in 1785.",
+    "answer": "began",
+    "rule": "in 1785 আছে তাই v2"
+  },
+  {
+    "sentence": "what did you do last night.",
+    "answer": "did you",
+    "rule": "last night"
+  },
+  {
+    "sentence": "I had to your glass is because my eyes were not very good.",
+    "answer": "had to",
+    "rule": "কারণ were আছে তাই have to না হয়ে had to হয়েছে"
+  },
+  {
+    "sentence": "He came to me that day before yesterday.",
+    "answer": "came",
+    "rule": "yesterday"
+  },
+  {
+    "sentence": "He moved to Dhaka just a few minutes ago.",
+    "answer": "moved",
+    "rule": "because of \"moved\" is a V2 form of verb."
+  },
+  {
+    "sentence": "You beat the thief last night.",
+    "answer": "beat",
+    "rule": "beat = V2 (last night)"
+  },
+  {
+    "sentence": "At four he looked the same as now.",
+    "answer": "looked",
+    "rule": "এর কারণ হচ্ছে বাক্যটা অতীতকাল নির্দেশ করতেছে তাই।"
+  },
+  {
+    "sentence": "The old man died yesterday.",
+    "answer": "died",
+    "rule": "যেহেতু yesterday অতীতকাল নির্দেশ করতেছে তাই এখানে died হবে।"
   }
 ]
