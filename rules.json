@@ -13,5 +13,10 @@
     "sentence": "Rabindranath's stories often have surprise endings.",
     "answer": "have",
     "rule": "Subject plural → base form 'have'।"
+  },
+  {
+    "sentence": "We often fall a victim of circumstances.",
+    "answer": "fall",
+    "rule": "fall a victim একটা বাক্যাংশ যা পরিস্থির শিকার অর্থে ব্যবহৃত হয়েছে।"
   }
 ]
