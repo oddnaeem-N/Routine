@@ -1,175 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Right Form of Verbs App</title>
+<title>30 Days English Plan</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f4f4f9;
-  }
-  h1 {
-    text-align: center;
-  }
-  .card {
-    max-width: 600px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    text-align: center;
-  }
-  .sentence {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-  .answer-highlight {
-    color: green;
-    font-weight: bold;
-  }
-  .rule {
-    margin-top: 10px;
-    color: #00796b;
-    font-style: italic;
-    display: none;
-  }
-  button {
-    margin: 5px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .btn-show {
-    background: #1976d2;
-    color: #fff;
-  }
-  .pagination {
-    text-align: center;
-    margin-top: 20px;
-  }
-  .pagination button {
-    background: #eee;
-    margin: 0 3px;
-  }
-  .pagination .active {
-    background: #1976d2;
-    color: #fff;
-    font-weight: bold;
-  }
+body { font-family: "Noto Sans Bengali", Arial, sans-serif; background:#000; color:#fff; padding:20px; }
+h2 { margin-top:2rem; }
+
+.tbl-wrap { background:#002000; border-radius:0.5rem; overflow-x:auto; margin-bottom:2rem; }
+table { width:100%; border-collapse: collapse; min-width:400px; }
+thead th { color:#ffcc00; background:#000; padding:10px; border:1px solid #00aa00; }
+td { border:1px solid #00aa00; padding:10px; vertical-align:middle; text-align:center; }
+tbody tr:nth-child(even) { background:#003000; }
+.past-day { background:Red !important; }   /* হালকা লাল */
+.today-day { background:Green !important; }  /* হালকা সবুজ */
+.text-start { text-align:left; padding-left:15px; }
+
+@media (max-width:600px) {
+  td, th { font-size:14px; padding:6px; }
+}
 </style>
 </head>
 <body>
 
-<h1>Right Form of Verbs</h1>
+<h2>Grammar Plan</h2>
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Date</th>
+        <th>Grammar Topic</th>
+      </tr>
+    </thead>
+    <tbody id="grammarTable"></tbody>
+  </table>
+</div>
 
-<div id="cardsContainer"></div>
-<div class="pagination" id="pagination"></div>
+<h2>Vocabulary Plan</h2>
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Date</th>
+        <th>Vocabulary Topic</th>
+      </tr>
+    </thead>
+    <tbody id="vocabTable"></tbody>
+  </table>
+</div>
 
 <script>
-let rules = [];
-let currentPage = 1;
-const rulesPerPage = 10;
+// Start date manually
+const startDate = new Date(2025, 8, 1); // 19 Aug 2025 (Month 0-11)
+startDate.setHours(0,0,0,0);
 
-fetch('rules.json')
-  .then(response => response.json())
-  .then(data => {
-    rules = data;
-    renderPage();
-    renderPagination();
-  })
-  .catch(error => console.error('Error loading JSON:', error));
+const grammarTopics = [
+  "Right form of verbs",
+  "Subject-Verb Agreement",
+  "Identification of parts of speech",
+  "Interchange of parts of speech",
+  "Confusing verb & modal verbs",
+  "Noun & Number",
+  "Article",
+  "Tag Question",
+  "Narration & Voice",
+  "Phrase & clause",
+  "Sentence Correction"
+];
 
-function renderPage() {
-  const container = document.getElementById('cardsContainer');
-  container.innerHTML = '';
+const vocabTopics = [
+  "Synonym & Meaning",
+  "Antonym",
+  "Spelling",
+  "Preposition",
+  "Idiom",
+  "One word substitution"
+];
 
-  const start = (currentPage - 1) * rulesPerPage;
-  const end = start + rulesPerPage;
-  const pageItems = rules.slice(start, end);
+function fillTable(tableId, topics) {
+  const tableBody = document.getElementById(tableId);
+  for (let i=0; i<30; i++) {
+    const row = document.createElement("tr");
 
-  pageItems.forEach((item) => {
-    const card = document.createElement('div');
-    card.className = 'card';
+    // Day
+    const dayCell = document.createElement("td");
+    dayCell.innerText = i+1;
+    row.appendChild(dayCell);
 
-    const sentenceEl = document.createElement('div');
-    sentenceEl.className = 'sentence';
-    sentenceEl.innerHTML = "Q: " + item.sentence.replace(item.answer, "_____");
+    // Date
+    const dateCell = document.createElement("td");
+    const date = new Date(startDate);
+    date.setDate(startDate.getDate() + i);
+    dateCell.innerText = date.toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric"});
+    row.appendChild(dateCell);
 
-    const showBtn = document.createElement('button');
-    showBtn.className = 'btn-show';
-    showBtn.textContent = "Show Answer";
+    // Topic
+    const topicCell = document.createElement("td");
+    topicCell.innerText = topics[i % topics.length];
+    topicCell.className = "text-start";
+    row.appendChild(topicCell);
 
-    const ruleBox = document.createElement('div');
-    ruleBox.className = 'rule';
+    // Highlight past/today
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    if (date < today) row.classList.add("past-day");
+    else if (date.getTime() === today.getTime()) row.classList.add("today-day");
 
-    showBtn.addEventListener('click', () => {
-      sentenceEl.innerHTML = "Q: " + item.sentence.replace(
-        item.answer,
-        `<span class="answer-highlight">${item.answer}</span>`
-      );
-      ruleBox.innerHTML = "Rule: " + item.rule;
-      ruleBox.style.display = 'block';
-    });
-
-    card.appendChild(sentenceEl);
-    card.appendChild(showBtn);
-    card.appendChild(ruleBox);
-    container.appendChild(card);
-  });
-}
-
-function renderPagination() {
-  const pagination = document.getElementById('pagination');
-  pagination.innerHTML = '';
-
-  const totalPages = Math.ceil(rules.length / rulesPerPage);
-
-  // Prev button
-  const prevBtn = document.createElement('button');
-  prevBtn.textContent = "Prev";
-  prevBtn.disabled = currentPage === 1;
-  prevBtn.addEventListener('click', () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderPage();
-      renderPagination();
-    }
-  });
-  pagination.appendChild(prevBtn);
-
-  // Number buttons
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement('button');
-    btn.textContent = i;
-    if (i === currentPage) btn.classList.add('active');
-
-    btn.addEventListener('click', () => {
-      currentPage = i;
-      renderPage();
-      renderPagination();
-    });
-
-    pagination.appendChild(btn);
+    tableBody.appendChild(row);
   }
-
-  // Next button
-  const nextBtn = document.createElement('button');
-  nextBtn.textContent = "Next";
-  nextBtn.disabled = currentPage === totalPages;
-  nextBtn.addEventListener('click', () => {
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderPage();
-      renderPagination();
-    }
-  });
-  pagination.appendChild(nextBtn);
 }
+
+fillTable("grammarTable", grammarTopics);
+fillTable("vocabTable", vocabTopics);
 </script>
 
 </body>
