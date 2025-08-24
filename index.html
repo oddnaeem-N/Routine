@@ -1,121 +1,127 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>30 Days English Plan</title>
-<style>
-body { font-family: "Noto Sans Bengali", Arial, sans-serif; background:#000; color:#fff; padding:20px; }
-h2 { margin-top:2rem; }
-
-.tbl-wrap { background:#002000; border-radius:0.5rem; overflow-x:auto; margin-bottom:2rem; }
-table { width:100%; border-collapse: collapse; min-width:400px; }
-thead th { color:#ffcc00; background:#000; padding:10px; border:1px solid #00aa00; }
-td { border:1px solid #00aa00; padding:10px; vertical-align:middle; text-align:center; }
-tbody tr:nth-child(even) { background:#003000; }
-.past-day { background:Red !important; }   /* হালকা লাল */
-.today-day { background:Green !important; }  /* হালকা সবুজ */
-.text-start { text-align:left; padding-left:15px; }
-
-@media (max-width:600px) {
-  td, th { font-size:14px; padding:6px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajshahi University - Topic Based Suggestion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #d9534f; /* 100% color */
+            font-size: 4em;
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .header h2 {
+            color: #007bff; /* রাজশাহী বিশ্ববিদ্যালয় color */
+            font-size: 2em;
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 20px;
+        }
+        .header h3 {
+            color: #333;
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .content-table th, .content-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .content-table th {
+            background-color: #e9ecef;
+            color: #333;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .content-table ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content-table ul li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-
-<h2>Grammar Plan</h2>
-<div class="tbl-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Date</th>
-        <th>Grammar Topic</th>
-      </tr>
-    </thead>
-    <tbody id="grammarTable"></tbody>
-  </table>
-</div>
-
-<h2>Vocabulary Plan</h2>
-<div class="tbl-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Date</th>
-        <th>Vocabulary Topic</th>
-      </tr>
-    </thead>
-    <tbody id="vocabTable"></tbody>
-  </table>
-</div>
-
-<script>
-// Start date manually
-const startDate = new Date(2025, 8, 1); // 19 Aug 2025 (Month 0-11)
-startDate.setHours(0,0,0,0);
-
-const grammarTopics = [
-  "Right form of verbs",
-  "Subject-Verb Agreement",
-  "Identification of parts of speech",
-  "Interchange of parts of speech",
-  "Confusing verb & modal verbs",
-  "Noun & Number",
-  "Article",
-  "Tag Question",
-  "Narration & Voice",
-  "Phrase & clause",
-  "Sentence Correction"
-];
-
-const vocabTopics = [
-  "Synonym & Meaning",
-  "Antonym",
-  "Spelling",
-  "Preposition",
-  "Idiom",
-  "One word substitution"
-];
-
-function fillTable(tableId, topics) {
-  const tableBody = document.getElementById(tableId);
-  for (let i=0; i<30; i++) {
-    const row = document.createElement("tr");
-
-    // Day
-    const dayCell = document.createElement("td");
-    dayCell.innerText = i+1;
-    row.appendChild(dayCell);
-
-    // Date
-    const dateCell = document.createElement("td");
-    const date = new Date(startDate);
-    date.setDate(startDate.getDate() + i);
-    dateCell.innerText = date.toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric"});
-    row.appendChild(dateCell);
-
-    // Topic
-    const topicCell = document.createElement("td");
-    topicCell.innerText = topics[i % topics.length];
-    topicCell.className = "text-start";
-    row.appendChild(topicCell);
-
-    // Highlight past/today
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    if (date < today) row.classList.add("past-day");
-    else if (date.getTime() === today.getTime()) row.classList.add("today-day");
-
-    tableBody.appendChild(row);
-  }
-}
-
-fillTable("grammarTable", grammarTopics);
-fillTable("vocabTable", vocabTopics);
-</script>
-
+    <div class="container">
+        <div class="header">
+            <h1>100%</h1>
+            <h2>রাজশাহী বিশ্ববিদ্যালয়</h2>
+            <h3>Topic Based Suggestion</h3>
+        </div>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th style="color: orange;">Grammar</th>
+                    <th style="color: orange;">Vocabulary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>1. Right form of verbs</li>
+                            <li>2. Subject-Verb Agreement</li>
+                            <li>3. Identification of parts of speech</li>
+                            <li>4. Interchange of parts of speech</li>
+                            <li>5. Confusing verb & modal verbs</li>
+                            <li>6. Noun & Number</li>
+                            <li>7. Article</li>
+                            <li>8. Tag Question</li>
+                            <li>9. Narration & Voice</li>
+                            <li>10. Phrase & clause</li>
+                            <li>11. Sentence Correction</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>1. Synonym & Meaning</li>
+                            <li>2. Antonym</li>
+                            <li>3. Spelling</li>
+                            <li>4. Preposition</li>
+                            <li>5. Idiom</li>
+                            <li>6. One word substitution</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer">
+            English Moja
+        </div>
+    </div>
 </body>
 </html>
