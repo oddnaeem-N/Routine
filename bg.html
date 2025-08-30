@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admission Drill</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body { background-color: #f4f4f8; }
+  .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+  .time { font-weight: 600; color: #0b57d0; font-size: 1.1rem; }
+  .topic { font-weight: 500; font-size: 1rem; margin-top: .25rem; }
+  .duration { font-size: 0.9rem; color: #555; margin-top: .5rem; }
+</style>
+</head>
+<body>
+<div class="container py-4">
+  <h1 class="text-center mb-4">Admission Drill — ব্যাকরণ টাইমলাইন</h1>
+  <div class="row g-3" id="timeline"></div>
+</div>
+
+<script>
+// ডেটা: start, topic, duration, ইউটিউব লিঙ্ক
+const sections = [
+  {start:"0:00", topic:"পদ প্রকারন", duration:"2ঘ 15মি 11সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=0s"},
+  {start:"2:15:11", topic:"ক্রিয়াপদ", duration:"45মি 0সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=2h15m11s"},
+  {start:"3:00:11", topic:"ভাষা ও বাংলা ভাষা", duration:"1ঘ 7মি 24সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=3h0m11s"},
+  {start:"4:07:35", topic:"ভাইয়ার হাসিও সুন্দর", duration:"32মি 24সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=4h7m35s"},
+  {start:"4:39:59", topic:"সন্ধি", duration:"1ঘ 32মি 29সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=4h39m59s"},
+  {start:"6:12:28", topic:"বাংলা ব্যাকরণ ও আলোচ্য বিষয়", duration:"49মি 6সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=6h12m28s"},
+  {start:"7:01:34", topic:"পুরুষ/স্ত্রীবাচক, পদাশ্রিত, দ্বিরুক্ত শব্দ", duration:"1ঘ 37মি 8সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=7h1m34s"},
+  {start:"8:38:42", topic:"ধ্বনি ও বর্ণ (ধ্বনিতত্ত্ব)", duration:"1ঘ 41মি 27সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=8h38m42s"},
+  {start:"10:20:09", topic:"ণ-ত্ব ও ষ-ত্ব বিধান", duration:"49মি 12সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=10h20m9s"},
+  {start:"11:09:21", topic:"উপসর্গ, অনুসর্গ", duration:"32মি 22সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=11h9m21s"},
+  {start:"11:41:43", topic:"বানান", duration:"27মি 24সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=11h41m43s"},
+  {start:"12:09:07", topic:"প্রত্যয়", duration:"18মি 23সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=12h9m7s"},
+  {start:"12:27:30", topic:"সমাস", duration:"1ঘ 49মি 27সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=12h27m30s"},
+  {start:"14:16:57", topic:"বচন, সংখ্যাবাচক, পদ সংস্থাপনা", duration:"1ঘ 39মি 53সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=14h16m57s"},
+  {start:"15:56:50", topic:"বাচ্য, উক্তি পরিবর্তন", duration:"41মি 13সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=15h56m50s"},
+  {start:"16:38:03", topic:"কারক ও বিভক্তি", duration:"≈21মি 57সে", link:"https://www.youtube.com/watch?v=g1cA34BgTWc&t=16h38m3s"}
+];
+
+const container = document.getElementById("timeline");
+
+// ডাইনামিক কার্ড তৈরি
+sections.forEach(sec => {
+  const col = document.createElement("div");
+  col.className = "col-md-4 col-sm-6";
+
+  col.innerHTML = `
+    <div class="card h-100 text-center">
+      <a href="${sec.link}" target="_blank" class="card-body text-decoration-none text-dark">
+        <div class="time">${sec.start}</div>
+        <div class="topic">${sec.topic}</div>
+        <div class="duration">সময়কাল: ${sec.duration}</div>
+      </a>
+    </div>
+  `;
+
+  container.appendChild(col);
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
